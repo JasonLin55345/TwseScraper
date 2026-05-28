@@ -2,591 +2,1072 @@
   {
     "Date": "2025-12-15",
     "StockNo": "2330",
-    "Price": "1480.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1480.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-16",
     "StockNo": "2330",
-    "Price": "1450.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1450.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-17",
     "StockNo": "2330",
-    "Price": "1435.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1435.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-18",
     "StockNo": "2330",
-    "Price": "1430.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1430.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-19",
     "StockNo": "2330",
-    "Price": "1430.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1430.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-22",
     "StockNo": "2330",
-    "Price": "1430.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1430.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-23",
     "StockNo": "2330",
-    "Price": "1465.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1465.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-24",
     "StockNo": "2330",
-    "Price": "1490.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1490.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-25",
     "StockNo": "2330",
-    "Price": "1495.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1495.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-26",
     "StockNo": "2330",
-    "Price": "1495.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1495.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-29",
     "StockNo": "2330",
-    "Price": "1510.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1510.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-30",
     "StockNo": "2330",
-    "Price": "1530.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1530.00",
+    "Volume": null
   },
   {
     "Date": "2025-12-31",
     "StockNo": "2330",
-    "Price": "1520.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1520.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-01",
     "StockNo": "2330",
-    "Price": "1550.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1550.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-02",
     "StockNo": "2330",
-    "Price": "1550.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1550.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-05",
     "StockNo": "2330",
-    "Price": "1585.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1585.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-06",
     "StockNo": "2330",
-    "Price": "1670.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1670.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-07",
     "StockNo": "2330",
-    "Price": "1705.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1705.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-08",
     "StockNo": "2330",
-    "Price": "1675.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1675.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-09",
     "StockNo": "2330",
-    "Price": "1685.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1685.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-12",
     "StockNo": "2330",
-    "Price": "1680.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1680.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-13",
     "StockNo": "2330",
-    "Price": "1690.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1690.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-14",
     "StockNo": "2330",
-    "Price": "1710.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1710.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-15",
     "StockNo": "2330",
-    "Price": "1710.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1710.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-16",
     "StockNo": "2330",
-    "Price": "1690.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1690.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-19",
     "StockNo": "2330",
-    "Price": "1740.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1740.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-20",
     "StockNo": "2330",
-    "Price": "1760.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1760.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-21",
     "StockNo": "2330",
-    "Price": "1775.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1775.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-22",
     "StockNo": "2330",
-    "Price": "1740.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1740.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-23",
     "StockNo": "2330",
-    "Price": "1760.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1760.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-26",
     "StockNo": "2330",
-    "Price": "1770.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1770.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-27",
     "StockNo": "2330",
-    "Price": "1755.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1755.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-28",
     "StockNo": "2330",
-    "Price": "1780.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1780.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-29",
     "StockNo": "2330",
-    "Price": "1820.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1820.00",
+    "Volume": null
   },
   {
     "Date": "2026-01-30",
     "StockNo": "2330",
-    "Price": "1805.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1805.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-02",
     "StockNo": "2330",
-    "Price": "1775.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1775.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-03",
     "StockNo": "2330",
-    "Price": "1765.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1765.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-04",
     "StockNo": "2330",
-    "Price": "1800.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1800.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-05",
     "StockNo": "2330",
-    "Price": "1785.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1785.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-06",
     "StockNo": "2330",
-    "Price": "1765.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1765.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-09",
     "StockNo": "2330",
-    "Price": "1780.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1780.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-10",
     "StockNo": "2330",
-    "Price": "1815.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1815.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-11",
     "StockNo": "2330",
-    "Price": "1880.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1880.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-12",
     "StockNo": "2330",
-    "Price": "1915.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1915.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-13",
     "StockNo": "2330",
-    "Price": "1915.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1915.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-16",
     "StockNo": "2330",
-    "Price": "1915.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1915.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-17",
     "StockNo": "2330",
-    "Price": "1915.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1915.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-18",
     "StockNo": "2330",
-    "Price": "1915.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1915.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-19",
     "StockNo": "2330",
-    "Price": "1915.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1915.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-20",
     "StockNo": "2330",
-    "Price": "1915.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1915.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-23",
     "StockNo": "2330",
-    "Price": "1915.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1915.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-24",
     "StockNo": "2330",
-    "Price": "1900.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1900.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-25",
     "StockNo": "2330",
-    "Price": "1965.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1965.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-26",
     "StockNo": "2330",
-    "Price": "2015.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2015.00",
+    "Volume": null
   },
   {
     "Date": "2026-02-27",
     "StockNo": "2330",
-    "Price": "1995.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1995.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-02",
     "StockNo": "2330",
-    "Price": "1995.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1995.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-03",
     "StockNo": "2330",
-    "Price": "1975.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1975.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-04",
     "StockNo": "2330",
-    "Price": "1935.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1935.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-05",
     "StockNo": "2330",
-    "Price": "1865.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1865.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-06",
     "StockNo": "2330",
-    "Price": "1900.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1900.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-09",
     "StockNo": "2330",
-    "Price": "1890.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1890.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-10",
     "StockNo": "2330",
-    "Price": "1810.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1810.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-11",
     "StockNo": "2330",
-    "Price": "1850.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1850.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-12",
     "StockNo": "2330",
-    "Price": "1940.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1940.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-13",
     "StockNo": "2330",
-    "Price": "1885.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1885.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-16",
     "StockNo": "2330",
-    "Price": "1865.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1865.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-17",
     "StockNo": "2330",
-    "Price": "1845.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1845.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-18",
     "StockNo": "2330",
-    "Price": "1870.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1870.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-19",
     "StockNo": "2330",
-    "Price": "1905.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1905.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-20",
     "StockNo": "2330",
-    "Price": "1850.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1850.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-23",
     "StockNo": "2330",
-    "Price": "1840.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1840.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-24",
     "StockNo": "2330",
-    "Price": "1810.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1810.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-25",
     "StockNo": "2330",
-    "Price": "1810.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1810.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-26",
     "StockNo": "2330",
-    "Price": "1845.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1845.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-27",
     "StockNo": "2330",
-    "Price": "1840.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1840.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-30",
     "StockNo": "2330",
-    "Price": "1820.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1820.00",
+    "Volume": null
   },
   {
     "Date": "2026-03-31",
     "StockNo": "2330",
-    "Price": "1780.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1780.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-01",
     "StockNo": "2330",
-    "Price": "1760.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1760.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-02",
     "StockNo": "2330",
-    "Price": "1855.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1855.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-03",
     "StockNo": "2330",
-    "Price": "1810.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1810.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-06",
     "StockNo": "2330",
-    "Price": "1810.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1810.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-07",
     "StockNo": "2330",
-    "Price": "1810.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1810.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-08",
     "StockNo": "2330",
-    "Price": "1860.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1860.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-09",
     "StockNo": "2330",
-    "Price": "1950.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1950.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-10",
     "StockNo": "2330",
-    "Price": "1955.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1955.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-13",
     "StockNo": "2330",
-    "Price": "2000.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2000.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-14",
     "StockNo": "2330",
-    "Price": "1990.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "1990.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-15",
     "StockNo": "2330",
-    "Price": "2055.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2055.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-16",
     "StockNo": "2330",
-    "Price": "2080.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2080.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-17",
     "StockNo": "2330",
-    "Price": "2085.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2085.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-20",
     "StockNo": "2330",
-    "Price": "2030.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2030.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-21",
     "StockNo": "2330",
-    "Price": "2025.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2025.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-22",
     "StockNo": "2330",
-    "Price": "2050.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2050.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-23",
     "StockNo": "2330",
-    "Price": "2050.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2050.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-24",
     "StockNo": "2330",
-    "Price": "2080.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2080.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-27",
     "StockNo": "2330",
-    "Price": "2185.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2185.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-28",
     "StockNo": "2330",
-    "Price": "2265.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2265.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-29",
     "StockNo": "2330",
-    "Price": "2215.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2215.00",
+    "Volume": null
   },
   {
     "Date": "2026-04-30",
     "StockNo": "2330",
-    "Price": "2180.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2180.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-01",
     "StockNo": "2330",
-    "Price": "2135.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2135.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-04",
     "StockNo": "2330",
-    "Price": "2135.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2135.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-05",
     "StockNo": "2330",
-    "Price": "2275.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2275.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-06",
     "StockNo": "2330",
-    "Price": "2250.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2250.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-07",
     "StockNo": "2330",
-    "Price": "2250.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2250.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-08",
     "StockNo": "2330",
-    "Price": "2310.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2310.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-11",
     "StockNo": "2330",
-    "Price": "2290.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2290.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-12",
     "StockNo": "2330",
-    "Price": "2235.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2235.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-13",
     "StockNo": "2330",
-    "Price": "2255.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2255.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-14",
     "StockNo": "2330",
-    "Price": "2220.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2220.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-15",
     "StockNo": "2330",
-    "Price": "2270.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2270.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-18",
     "StockNo": "2330",
-    "Price": "2265.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2265.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-19",
     "StockNo": "2330",
-    "Price": "2240.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2240.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-20",
     "StockNo": "2330",
-    "Price": "2205.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2205.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-21",
     "StockNo": "2330",
-    "Price": "2185.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2185.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-22",
     "StockNo": "2330",
-    "Price": "2230.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2230.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-25",
     "StockNo": "2330",
-    "Price": "2255.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2255.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-26",
     "StockNo": "2330",
-    "Price": "2310.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2310.00",
+    "Volume": null
   },
   {
     "Date": "2026-05-27",
     "StockNo": "2330",
-    "Price": "2270.00"
+    "Open": null,
+    "High": null,
+    "Low": null,
+    "Price": "2270.00",
+    "Volume": null
+  },
+  {
+    "Date": "2026-05-28",
+    "StockNo": "2330",
+    "Open": "2310.00",
+    "High": "2330.00",
+    "Low": "2290.00",
+    "Price": "2300.00",
+    "Volume": "40272350"
   }
 ]
