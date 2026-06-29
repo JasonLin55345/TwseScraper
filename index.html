@@ -108,6 +108,7 @@
                         <button class="ta-tab" data-ma="ma5">MA5</button>
                         <button class="ta-tab" data-ma="ma10">MA10</button>
                         <button class="ta-tab" data-ma="ma20">MA20</button>
+                        <button class="ta-tab" data-ma="boll">BOLL</button>
                     </div>
                     <div class="live-indicator">
                         <span class="pulse"></span>
@@ -129,6 +130,17 @@
                     <span class="ta-legend-bar"></span> 成交量
                 </span>
             </div>
+            <!-- RSI(14) 獨立副圖: 與主圖一起在 updateTAChart() 中重建 -->
+            <div class="rsi-chart-wrapper">
+                <div class="rsi-chart-header">
+                    <span class="rsi-chart-title">RSI (14)</span>
+                    <span class="ta-legend-item">
+                        <span class="ta-legend-dot rsi-overbought"></span> 超買 70
+                        <span class="ta-legend-dot rsi-oversold"></span> 超賣 30
+                    </span>
+                </div>
+                <div class="rsi-chart-container" id="rsiChartContainer"></div>
+            </div>
             <div class="card-accent"></div>
         </div>
 
@@ -139,12 +151,17 @@
             <div class="controls">
                 <div class="select-wrapper">
                     <select id="fileSelector">
+                        <option value="__ALL__">全部資料</option>
                         <option value="">選擇資料檔案...</option>
                     </select>
                 </div>
                 <button id="refreshBtn">
                     <span class="btn-icon">↻</span>
                     <span>重新整理</span>
+                </button>
+                <button id="exportCsvBtn">
+                    <span class="btn-icon">⤓</span>
+                    <span>匯出 CSV</span>
                 </button>
             </div>
             <div class="table-container">

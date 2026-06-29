@@ -26,6 +26,8 @@
  */
 
 // 全域變數
+const ALL_FILES_VALUE = '__ALL__'; // 檔案選擇器中代表「全部資料」的特殊值
+let availableFiles = []; // 儲存 files.json 中的檔案清單（依由舊到新的順序）
 let allData = []; // 儲存從檔案載入的完整資料集
 let filteredData = []; // 儲存根據月份篩選後的資料（用於圖表、統計和表格顯示）
 let chart = null; // Chart.js 圖表實例
@@ -35,7 +37,12 @@ let taVolumeSeries = null; // 成交量 series
 let taMA5Series = null; // MA5 均線 series
 let taMA10Series = null; // MA10 均線 series
 let taMA20Series = null; // MA20 均線 series
-let activeMAs = new Set(); // 當前啟用的均線
+let taBollUpperSeries = null; // 布林通道上軌 series
+let taBollMiddleSeries = null; // 布林通道中軌 series（=MA20）
+let taBollLowerSeries = null; // 布林通道下軌 series
+let rsiChart = null; // lightweight-charts RSI 副圖實例
+let rsiSeries = null; // RSI line series
+let activeMAs = new Set(); // 當前啟用的均線（含布林通道 'boll'）
 let selectedMonth = ''; // 當前選擇的月份（格式: YYYY-MM，例如 "2026-01"）
 
 // DOM 載入完成後執行
@@ -56,7 +63,8 @@ function setupEventListeners() {
     document.getElementById('fileSelector').addEventListener('change', handleFileChange);
     document.getElementById('refreshBtn').addEventListener('click', refreshData);
     document.getElementById('monthFilter').addEventListener('change', handleMonthFilterChange);
-    
+    document.getElementById('exportCsvBtn').addEventListener('click', exportToCSV);
+
     // 技術面分析: MA均線切換按鈕
     document.querySelectorAll('.ta-tab').forEach(tab => {
         tab.addEventListener('click', handleTATabClick);
@@ -133,8 +141,13 @@ async function loadAvailableFiles() {
 // 填充檔案選擇器
 function populateFileSelector(files) {
     const selector = document.getElementById('fileSelector');
-    selector.innerHTML = '<option value="">選擇資料檔案...</option>';
-    
+    // 保存檔案清單（供「全部資料」合併載入使用）
+    availableFiles = files;
+
+    // 第一個選項為「全部資料」，其後才是個別檔案
+    selector.innerHTML = '<option value="' + ALL_FILES_VALUE + '">全部資料</option>'
+        + '<option value="">選擇資料檔案...</option>';
+
     if (files.length === 0) {
         const option = document.createElement('option');
         option.value = "";
@@ -145,26 +158,28 @@ function populateFileSelector(files) {
         hideGlobalLoader();
         return;
     }
-    
+
     files.forEach(file => {
         const option = document.createElement('option');
         option.value = file;
         option.textContent = file;
         selector.appendChild(option);
     });
-    
-    // 自動選擇最新的檔案
-    if (files.length > 0) {
-        updateLoaderText('正在載入股價資料...');
-        selector.value = files[files.length - 1];
-        loadDataFromFile(files[files.length - 1]);
-    }
+
+    // 預設選擇「全部資料」，合併載入所有檔案
+    updateLoaderText('正在載入股價資料...');
+    selector.value = ALL_FILES_VALUE;
+    loadAllFiles();
 }
 
 // 處理檔案選擇變更
 function handleFileChange(event) {
     const selectedFile = event.target.value;
-    if (selectedFile) {
+    if (selectedFile === ALL_FILES_VALUE) {
+        // 選擇「全部資料」: 合併載入所有檔案
+        loadAllFiles();
+    } else if (selectedFile) {
+        // 選擇個別檔案: 維持原本的單檔載入行為
         loadDataFromFile(selectedFile);
     }
 }
@@ -198,6 +213,87 @@ async function loadDataFromFile(fileName) {
     } catch (error) {
         console.error('載入資料時發生錯誤:', error);
         showToast('無法載入資料檔案: ' + fileName, 'error');
+        showErrorState();
+    } finally {
+        showLoading(false);
+        hideGlobalLoader();
+    }
+}
+
+// 合併載入所有檔案
+// 依 availableFiles（files.json 順序）逐一 fetch 每個資料檔，
+// 將各檔案的陣列合併成一個大陣列，並依 Date 由舊到新排序後存入 allData，
+// 接著沿用現有的篩選與渲染流程顯示。
+// 若某個檔案載入失敗，會以 showToast 提示但不中斷，盡量顯示成功載入的部分。
+async function loadAllFiles() {
+    try {
+        showLoading(true);
+        updateLoaderText('正在合併載入所有資料檔案...');
+
+        if (availableFiles.length === 0) {
+            showToast('沒有可載入的資料檔案', 'error');
+            showErrorState();
+            return;
+        }
+
+        const merged = [];
+        let successCount = 0;
+        let failCount = 0;
+
+        // 依清單順序逐一載入並合併
+        for (const fileName of availableFiles) {
+            try {
+                const response = await fetch(`./data/${fileName}`);
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                const data = await response.json();
+                const arr = Array.isArray(data) ? data : [data];
+                merged.push(...arr);
+                successCount++;
+            } catch (err) {
+                // 單一檔案失敗不中斷整體流程，僅提示並略過
+                console.error(`載入檔案失敗: ${fileName}`, err);
+                showToast(`無法載入檔案: ${fileName}（已略過）`, 'error');
+                failCount++;
+            }
+        }
+
+        // 全部檔案都失敗時才視為錯誤狀態
+        if (merged.length === 0) {
+            showToast('所有資料檔案皆載入失敗', 'error');
+            showErrorState();
+            return;
+        }
+
+        // 依 Date 由舊到新排序，確保跨檔案走勢連續
+        merged.sort((a, b) => {
+            if (a.Date < b.Date) return -1;
+            if (a.Date > b.Date) return 1;
+            return 0;
+        });
+
+        allData = merged;
+
+        // 重置月份篩選器並填充可用月份
+        populateMonthFilter();
+
+        // 應用當前的月份篩選
+        applyMonthFilter();
+
+        updateStatistics();
+        updateChart();
+        updateTAChart();
+        updateTable();
+
+        const summary = failCount > 0
+            ? `已合併載入 ${successCount} 個檔案（${allData.length} 筆資料，${failCount} 個失敗）`
+            : `已合併載入全部 ${successCount} 個檔案（${allData.length} 筆資料）`;
+        showToast(summary, failCount > 0 ? 'info' : 'success');
+
+    } catch (error) {
+        console.error('合併載入資料時發生錯誤:', error);
+        showToast('合併載入資料時發生錯誤', 'error');
         showErrorState();
     } finally {
         showLoading(false);
@@ -564,6 +660,94 @@ function calculateMA(data, period) {
     return result;
 }
 
+// 計算布林通道 (Bollinger Bands)
+// 參數: period 計算週期（預設 20）, multiplier 標準差倍數（預設 2）
+// 以收盤價 Price 計算: 中軌 = period 日簡單移動平均（即 MA20）,
+// 上/下軌 = 中軌 ± multiplier × 母體標準差。
+// 回傳 { upper, middle, lower } 三組 { time, value } 陣列，格式與 calculateMA 一致。
+function calculateBollinger(data, period, multiplier) {
+    const upper = [];
+    const middle = [];
+    const lower = [];
+
+    for (let i = 0; i < data.length; i++) {
+        if (i < period - 1) continue;
+
+        // 計算 period 日內收盤價的平均值（中軌）
+        let sum = 0;
+        for (let j = 0; j < period; j++) {
+            sum += parseFloat(data[i - j].Price);
+        }
+        const mean = sum / period;
+
+        // 計算同一視窗的母體標準差
+        let variance = 0;
+        for (let j = 0; j < period; j++) {
+            const diff = parseFloat(data[i - j].Price) - mean;
+            variance += diff * diff;
+        }
+        const stdDev = Math.sqrt(variance / period);
+
+        const time = data[i].Date;
+        upper.push({ time, value: parseFloat((mean + multiplier * stdDev).toFixed(2)) });
+        middle.push({ time, value: parseFloat(mean.toFixed(2)) });
+        lower.push({ time, value: parseFloat((mean - multiplier * stdDev).toFixed(2)) });
+    }
+
+    return { upper, middle, lower };
+}
+
+// 計算 RSI (相對強弱指標)
+// 以收盤價 Price 計算，採用 Wilder 平滑法（標準做法）:
+//   1. 先以前 period 日漲跌幅的「簡單平均」作為初始 avgGain / avgLoss。
+//   2. 之後每日以 Wilder 遞迴平滑: avg = (前一日avg × (period-1) + 當日值) / period。
+//   3. RS = avgGain / avgLoss, RSI = 100 - 100 / (1 + RS)。
+// 回傳 { time, value } 陣列，第一筆對應第 period 根 K 棒。
+function calculateRSI(data, period) {
+    const result = [];
+    if (data.length <= period) return result;
+
+    let avgGain = 0;
+    let avgLoss = 0;
+
+    // 步驟 1: 以前 period 日的漲跌幅計算初始平均漲幅 / 跌幅
+    for (let i = 1; i <= period; i++) {
+        const change = parseFloat(data[i].Price) - parseFloat(data[i - 1].Price);
+        if (change >= 0) {
+            avgGain += change;
+        } else {
+            avgLoss += -change;
+        }
+    }
+    avgGain /= period;
+    avgLoss /= period;
+
+    // 第一個有效 RSI 對應索引 = period
+    const firstRS = avgLoss === 0 ? 100 : avgGain / avgLoss;
+    result.push({
+        time: data[period].Date,
+        value: avgLoss === 0 ? 100 : parseFloat((100 - 100 / (1 + firstRS)).toFixed(2))
+    });
+
+    // 步驟 2 & 3: 以 Wilder 平滑法逐日遞迴計算後續 RSI
+    for (let i = period + 1; i < data.length; i++) {
+        const change = parseFloat(data[i].Price) - parseFloat(data[i - 1].Price);
+        const gain = change >= 0 ? change : 0;
+        const loss = change < 0 ? -change : 0;
+
+        avgGain = (avgGain * (period - 1) + gain) / period;
+        avgLoss = (avgLoss * (period - 1) + loss) / period;
+
+        const rs = avgLoss === 0 ? 100 : avgGain / avgLoss;
+        result.push({
+            time: data[i].Date,
+            value: avgLoss === 0 ? 100 : parseFloat((100 - 100 / (1 + rs)).toFixed(2))
+        });
+    }
+
+    return result;
+}
+
 // 處理 MA 切換按鈕點擊
 function handleTATabClick(event) {
     const tab = event.currentTarget;
@@ -603,6 +787,17 @@ function updateMAVisibility() {
         taMA20Series.applyOptions({
             visible: activeMAs.has('ma20')
         });
+    }
+    // 布林通道三條線一起切換
+    const bollVisible = activeMAs.has('boll');
+    if (taBollUpperSeries) {
+        taBollUpperSeries.applyOptions({ visible: bollVisible });
+    }
+    if (taBollMiddleSeries) {
+        taBollMiddleSeries.applyOptions({ visible: bollVisible });
+    }
+    if (taBollLowerSeries) {
+        taBollLowerSeries.applyOptions({ visible: bollVisible });
     }
 }
 
@@ -751,6 +946,42 @@ function updateTAChart() {
     });
     taMA20Series.setData(calculateMA(dataToUse, 20));
 
+    // 新增布林通道 (Bollinger Bands) series，疊在主價格軸上（與 K 線同軸）
+    // 採用較淡的灰藍色系，避免蓋掉 K 線；預設依 activeMAs 決定是否顯示
+    const bollVisible = activeMAs.has('boll');
+    const bollData = calculateBollinger(dataToUse, 20, 2);
+
+    taBollUpperSeries = taChart.addLineSeries({
+        color: 'rgba(120, 160, 200, 0.7)',
+        lineWidth: 1,
+        visible: bollVisible,
+        lastValueVisible: false,
+        priceLineVisible: false
+    });
+    taBollUpperSeries.setData(bollData.upper);
+
+    taBollMiddleSeries = taChart.addLineSeries({
+        color: 'rgba(120, 160, 200, 0.45)',
+        lineWidth: 1,
+        lineStyle: LightweightCharts.LineStyle.Dashed,
+        visible: bollVisible,
+        lastValueVisible: false,
+        priceLineVisible: false
+    });
+    taBollMiddleSeries.setData(bollData.middle);
+
+    taBollLowerSeries = taChart.addLineSeries({
+        color: 'rgba(120, 160, 200, 0.7)',
+        lineWidth: 1,
+        visible: bollVisible,
+        lastValueVisible: false,
+        priceLineVisible: false
+    });
+    taBollLowerSeries.setData(bollData.lower);
+
+    // 同步更新 RSI 副圖（切換月份/檔案時一併重建）
+    updateRSIChart();
+
     // 自適應圖表寬度
     taChart.timeScale().fitContent();
 
@@ -762,6 +993,173 @@ function updateTAChart() {
         }
     });
     resizeObserver.observe(container);
+}
+
+// 建立或更新 RSI(14) 獨立副圖
+// 比照 taChart 的銷毀/重建模式（rsiChart.remove()），避免記憶體洩漏或重複疊加。
+// 由 updateTAChart() 在切換月份/檔案時呼叫，確保 RSI 與主圖同步更新。
+function updateRSIChart() {
+    // 確認 lightweight-charts 已載入
+    if (typeof LightweightCharts === 'undefined') {
+        return;
+    }
+
+    const container = document.getElementById('rsiChartContainer');
+    if (!container) return;
+
+    // 先銷毀舊圖表（避免重複疊加）
+    if (rsiChart) {
+        rsiChart.remove();
+        rsiChart = null;
+        rsiSeries = null;
+    }
+
+    const dataToUse = getDisplayData();
+    const rsiData = calculateRSI(dataToUse, 14);
+
+    // 資料不足以計算 RSI 時顯示提示文字
+    if (rsiData.length === 0) {
+        container.innerHTML = '<div class="ta-chart-empty">資料不足，無法計算 RSI(14)</div>';
+        return;
+    }
+    // 清除可能殘留的提示文字
+    container.innerHTML = '';
+
+    rsiChart = LightweightCharts.createChart(container, {
+        width: container.clientWidth,
+        height: container.clientHeight,
+        layout: {
+            background: { type: 'solid', color: 'transparent' },
+            textColor: '#8b92a7',
+            fontFamily: "'JetBrains Mono', 'Courier New', monospace",
+            fontSize: 11
+        },
+        grid: {
+            vertLines: { color: 'rgba(0, 245, 255, 0.06)' },
+            horzLines: { color: 'rgba(0, 245, 255, 0.06)' }
+        },
+        crosshair: {
+            mode: LightweightCharts.CrosshairMode.Normal,
+            vertLine: {
+                color: 'rgba(0, 245, 255, 0.4)',
+                width: 1,
+                style: LightweightCharts.LineStyle.Dashed,
+                labelBackgroundColor: '#1a1f3a'
+            },
+            horzLine: {
+                color: 'rgba(0, 245, 255, 0.4)',
+                width: 1,
+                style: LightweightCharts.LineStyle.Dashed,
+                labelBackgroundColor: '#1a1f3a'
+            }
+        },
+        rightPriceScale: {
+            borderColor: 'rgba(0, 245, 255, 0.15)',
+            // 固定 0~100 範圍，讓 70/30 參考線位置穩定
+            autoScale: false,
+            scaleMargins: { top: 0.1, bottom: 0.1 }
+        },
+        timeScale: {
+            borderColor: 'rgba(0, 245, 255, 0.15)',
+            timeVisible: false,
+            rightOffset: 5,
+            barSpacing: 8
+        },
+        handleScroll: { vertTouchDrag: false }
+    });
+
+    // RSI 線
+    rsiSeries = rsiChart.addLineSeries({
+        color: '#00f5ff',
+        lineWidth: 2,
+        lastValueVisible: true,
+        priceLineVisible: false
+    });
+    rsiSeries.setData(rsiData);
+
+    // 以 createPriceLine 標出 70 / 30 兩條水平參考線
+    rsiSeries.createPriceLine({
+        price: 70,
+        color: 'rgba(255, 0, 85, 0.6)',
+        lineWidth: 1,
+        lineStyle: LightweightCharts.LineStyle.Dashed,
+        axisLabelVisible: true,
+        title: '超買 70'
+    });
+    rsiSeries.createPriceLine({
+        price: 30,
+        color: 'rgba(0, 255, 136, 0.6)',
+        lineWidth: 1,
+        lineStyle: LightweightCharts.LineStyle.Dashed,
+        axisLabelVisible: true,
+        title: '超賣 30'
+    });
+
+    rsiChart.timeScale().fitContent();
+
+    // 監聽容器尺寸變化
+    const rsiResizeObserver = new ResizeObserver(entries => {
+        if (rsiChart) {
+            const { width, height } = entries[0].contentRect;
+            rsiChart.applyOptions({ width, height });
+        }
+    });
+    rsiResizeObserver.observe(container);
+}
+
+// 匯出目前顯示的資料為 CSV 檔案
+// 使用 getDisplayData() 取得已套用月份篩選的資料，純前端透過 Blob 觸發下載。
+// 為避免 Excel 開啟中文亂碼，於檔頭加上 UTF-8 BOM。
+function exportToCSV() {
+    const dataToUse = getDisplayData();
+
+    if (dataToUse.length === 0) {
+        showToast('目前沒有可匯出的資料', 'error');
+        return;
+    }
+
+    // CSV 表頭（中文）
+    const headers = ['日期', '股票代碼', '開盤', '最高', '最低', '收盤', '成交量'];
+
+    // 將單一欄位值轉為安全的 CSV 字串（處理含逗號、引號、換行的情況）
+    const escapeCsv = (value) => {
+        const str = (value === undefined || value === null) ? '' : String(value);
+        if (/[",\n]/.test(str)) {
+            return '"' + str.replace(/"/g, '""') + '"';
+        }
+        return str;
+    };
+
+    const rows = dataToUse.map(item => [
+        item.Date,
+        item.StockNo,
+        item.Open,
+        item.High,
+        item.Low,
+        item.Price,
+        item.Volume
+    ].map(escapeCsv).join(','));
+
+    // 組合內容，並加上 UTF-8 BOM (﻿)
+    const csvContent = '﻿' + headers.join(',') + '\n' + rows.join('\n');
+
+    // 以資料中的股票代碼與今天日期組成檔名
+    const stockNo = dataToUse[0].StockNo || 'stock';
+    const today = new Date().toISOString().slice(0, 10); // YYYY-MM-DD
+    const fileName = `stock_${stockNo}_${today}.csv`;
+
+    // 透過 Blob + <a download> 觸發下載
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = url;
+    link.download = fileName;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+
+    showToast(`已匯出 ${dataToUse.length} 筆資料為 ${fileName}`, 'success');
 }
 
 // 更新表格
@@ -835,8 +1233,11 @@ function updateTable() {
 // 重新整理資料
 function refreshData() {
     const selectedFile = document.getElementById('fileSelector').value;
-    if (selectedFile) {
-        // 保持當前選擇的月份
+    if (selectedFile === ALL_FILES_VALUE) {
+        // 「全部資料」: 重新合併載入所有檔案（保持當前選擇的月份）
+        loadAllFiles();
+    } else if (selectedFile) {
+        // 個別檔案: 保持當前選擇的月份
         loadDataFromFile(selectedFile);
     } else {
         loadAvailableFiles();

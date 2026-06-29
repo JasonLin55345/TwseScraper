@@ -45,6 +45,8 @@ public class ScrapeStockPriceUseCase
 
         // 3. 載入既有記錄並追加
         var existingRecords = await _repository.LoadAsync(stockCode, ct);
+        // 移除相同日期的舊紀錄，避免同一天重複執行時產生重複資料（以新覆蓋舊）
+        existingRecords.RemoveAll(r => r.Date == record.Date);
         existingRecords.Add(record);
 
         // 4. 儲存
